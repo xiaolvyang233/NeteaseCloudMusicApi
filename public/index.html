@@ -5,9 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的歌单</title>
     <script>
-        // 使用相对路径 /api，它会自动请求当前域名下的 API
+        // 1. 把 API 基础路径改为根路径 "/"
+        const API_BASE = "/";
+        const REAL_IP = "116.25.146.177";
+
+        // 2. 拦截所有请求，自动补上 realIP 参数
+        const originalFetch = window.fetch;
+        window.fetch = function(url, options) {
+            if (typeof url === 'string' && url.startsWith(API_BASE)) {
+                if (!url.includes('realIP=')) {
+                    const separator = url.includes('?') ? '&' : '?';
+                    url = url + separator + 'realIP=' + REAL_IP;
+                }
+            }
+            return originalFetch(url, options);
+        };
+
+        // 3. 播放器配置
         window.NMPv3Config = {
-            apiBaseUrl: "/api"
+            apiBaseUrl: API_BASE
         };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/netease-mini-player-v3@3.0.1/dist/nmpv3.min.js"></script>
