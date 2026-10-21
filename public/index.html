@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的歌单</title>
+    <script>
+        // 使用相对路径 /api，它会自动请求当前域名下的 API
+        window.NMPv3Config = {
+            apiBaseUrl: "/api"
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/netease-mini-player-v3@3.0.1/dist/nmpv3.min.js"></script>
+</head>
+<body>
+    <nmp-player
+        playlist-id="10176886913"
+        theme="auto"
+        layout="compact"
+        position="bottom-right"
+    ></nmp-player>
+</body>
+</html>
